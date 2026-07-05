@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  homepage-frontend:
+    container_name: homepage-frontend
+    image: homepage-frontend
+    build:
+      context: .
+    network_mode: 'host'
+    restart: always

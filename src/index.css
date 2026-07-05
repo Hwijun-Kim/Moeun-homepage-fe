@@ -1,0 +1,23 @@
+@import './assets/font/index.css';
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  font-family: 'Geologica', 'Geologica_Auto', 'Geologica_Cursive', sans-serif !important;
+}
+
+:root {
+  width: 100%;
+  height: 100%;
+  --primary: #8CBE2C !important;
+  --primary-foreground: #fff !important;
+  --primary-clear: #8CBE2C29 !important;
+  --primary-clear2: #8CBE2C66 !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
