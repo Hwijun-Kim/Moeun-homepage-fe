@@ -67,19 +67,19 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="flex justify-center pt-[192px] bg-[#F7F7FB]">
+    <div className="flex justify-center pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-6 bg-[#F7F7FB]">
       <div
-        className="w-[848px] min-h-[1422px] rounded-t-[40px] bg-white px-[144px] pt-[160px] pb-[120px]"
+        className="w-full max-w-[848px] rounded-t-[24px] sm:rounded-t-[40px] bg-white px-6 sm:px-12 lg:px-[144px] pt-10 sm:pt-14 lg:pt-16 pb-12 sm:pb-16 lg:pb-20"
         style={{ boxShadow: "10px 10px 30px 0px #2F4B2214" }}
       >
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-8 sm:gap-14">
           <div className="flex flex-col gap-2">
-            <span className="font-semibold text-[36px]">
+            <span className="font-semibold text-[30px] sm:text-[36px] lg:text-[42px]">
               모은심리상담센터에
               <br />
               문의사항이 있으신가요?
             </span>
-            <span className="text-[16px] text-[#97999B]">
+            <span className="text-[14px] sm:text-[20px] text-[#97999B]">
               어떤 내용이든 문의해주세요. 빠른 시일 내에 답변드리겠습니다.
             </span>
           </div>

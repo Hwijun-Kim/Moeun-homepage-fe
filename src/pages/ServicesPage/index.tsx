@@ -29,14 +29,75 @@ const AIBoxDescriptions = [
   '내면의 정서 상태를 \n탐색하는 검사',
 ];
 
-const AIBoxContents = {
-  0: ['MBTI', 'MMPI-2', 'PAI'],
-  1: ['Holland', 'CTI', '에니어그램'],
-  2: ['MLST', 'MST', '학습전략'],
-  3: ['SCT', 'TAT', 'HTP'],
-}
+const INPSYT_URL = 'https://inpsyt.co.kr/main';
+const ASSESTA_URL = 'https://www.assesta.com/main/main.asp#';
+const MTEST_URL = "https://mtest.kr/";
 
-const IllustrationPanel = () => (
+const AIBoxContents: { name: string; href?: string }[][] = [
+  [
+    { name: "MBTI", href: ASSESTA_URL },
+    { name: "MMPI-2", href: MTEST_URL },
+    { name: "PAI", href: INPSYT_URL },
+    { name: "TCI", href: MTEST_URL },
+  ],
+  [
+    { name: "Holland", href: INPSYT_URL },
+    { name: "STRONG", href: ASSESTA_URL },
+    { name: "에니어그램", href: INPSYT_URL },
+  ],
+  [{ name: "MLST-2", href: INPSYT_URL }, { name: "MST" }, { name: "학습전략" }],
+  [{ name: "SCT", href: INPSYT_URL }, { name: "TAT" }, { name: "HTP" }],
+];
+
+const IllustrationIcons = [
+  // 0. 개인상담 - 1:1 대화 말풍선
+  () => (
+    <>
+      <rect x="216" y="250" width="200" height="120" rx="26" fill="#2F4B22" />
+      <path d="M270 370 L255 410 L320 370 Z" fill="#2F4B22" />
+      <rect x="376" y="360" width="160" height="100" rx="22" fill="#8CBE2C" />
+      <path d="M400 460 L390 498 L440 460 Z" fill="#8CBE2C" />
+    </>
+  ),
+  // 1. 집단상담 - 함께 모인 사람들
+  () => (
+    <>
+      <circle cx="290" cy="310" r="36" fill="#B7D98C" />
+      <path d="M232 458 L232 368 A30 30 0 0 1 262 338 L318 338 A30 30 0 0 1 348 368 L348 458 Z" fill="#B7D98C" />
+      <circle cx="462" cy="310" r="36" fill="#8CBE2C" />
+      <path d="M404 458 L404 368 A30 30 0 0 1 434 338 L490 338 A30 30 0 0 1 520 368 L520 458 Z" fill="#8CBE2C" />
+      <circle cx="376" cy="290" r="44" fill="#2F4B22" />
+      <path d="M304 474 L304 360 A36 36 0 0 1 340 324 L412 324 A36 36 0 0 1 448 360 L448 474 Z" fill="#2F4B22" />
+    </>
+  ),
+  // 2. 특화 프로그램 - 미술 팔레트와 붓
+  () => (
+    <>
+      <ellipse cx="350" cy="350" rx="100" ry="80" fill="#2F4B22" />
+      <circle cx="400" cy="370" r="18" fill="#FFFFFF" />
+      <circle cx="310" cy="310" r="12" fill="#F7F869" />
+      <circle cx="285" cy="350" r="12" fill="#8CBE2C" />
+      <circle cx="300" cy="395" r="12" fill="#B7D98C" />
+      <circle cx="355" cy="300" r="12" fill="#8CBE2C" />
+      <path d="M435 405 L425 415 L481 471 L491 461 Z" fill="#8CBE2C" />
+      <path d="M491 461 L481 471 L500 480 Z" fill="#F7F869" />
+    </>
+  ),
+  // 3. 심리검사 - 체크리스트 클립보드
+  () => (
+    <>
+      <rect x="278" y="256" width="220" height="240" rx="22" fill="#2F4B22" />
+      <rect x="333" y="239" width="110" height="33" rx="11" fill="#B7D98C" />
+      <rect x="307" y="313" width="131" height="15" rx="7" fill="#FFFFFF" />
+      <rect x="307" y="352" width="161" height="15" rx="7" fill="#FFFFFF" />
+      <rect x="307" y="391" width="98" height="15" rx="7" fill="#FFFFFF" />
+      <circle cx="454" cy="448" r="41" fill="#8CBE2C" />
+      <path d="M436 448 l13 13 26 -28" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </>
+  ),
+];
+
+const IllustrationPanel = ({ index }: { index: number }) => (
   <svg viewBox="0 0 752 736" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
     <defs>
       <linearGradient id="counselBg" x1="0" y1="0" x2="1" y2="1">
@@ -46,9 +107,7 @@ const IllustrationPanel = () => (
     </defs>
     <rect width="752" height="736" fill="url(#counselBg)" />
     <circle cx="376" cy="360" r="220" fill="#FFFFFF" />
-    <path d="M270 300 h140 a24 24 0 0 1 24 24 v70 a24 24 0 0 1 -24 24 h-70 l-40 36 v-36 h-30 a24 24 0 0 1 -24 -24 v-70 a24 24 0 0 1 24 -24 z" fill="#2F4B22" />
-    <path d="M420 380 h110 a20 20 0 0 1 20 20 v56 a20 20 0 0 1 -20 20 h-24 l-30 28 v-28 h-56 a20 20 0 0 1 -20 -20 v-56 a20 20 0 0 1 20 -20 z" fill="#8CBE2C" />
-    <circle cx="376" cy="500" r="12" fill="#8CBE2C" />
+    {IllustrationIcons[index]()}
     <circle cx="230" cy="220" r="8" fill="#B7D98C" />
     <circle cx="540" cy="230" r="10" fill="#B7D98C" />
     <circle cx="560" cy="520" r="7" fill="#B7D98C" />
@@ -61,28 +120,28 @@ const ServicesPage = () => {
   });
 
   return(
-    <div className='pt-[256px] pb-[260px] flex flex-col items-center w-full' style={{ background: 'linear-gradient(to top, #FFFFFF, #F7F7FB)' }}>
-      <div className='flex flex-col gap-16 items-center'>
-        <span className='font-semibold text-[44px]'>상담 종류</span>
-        <div className='flex gap-3'>
-          <div className='w-[752px] h-[736px] rounded-2xl overflow-hidden'>
-            <IllustrationPanel />
+    <div className='pt-24 sm:pt-32 lg:pt-[256px] pb-16 sm:pb-24 lg:pb-[260px] flex flex-col items-center w-full px-4' style={{ background: 'linear-gradient(to top, #FFFFFF, #F7F7FB)' }}>
+      <div className='flex flex-col gap-10 sm:gap-16 items-center w-full'>
+        <span className='font-semibold text-[28px] sm:text-[36px] lg:text-[44px]'>상담 종류</span>
+        <div className='flex flex-col lg:flex-row! gap-3 w-full max-w-[1300px] items-center'>
+          <div className='w-full max-w-[500px] sm:max-w-[600px] lg:max-w-[752px] lg:w-[752px]! aspect-[752/736] lg:h-[736px] rounded-2xl overflow-hidden shrink-0'>
+            <IllustrationPanel index={isHover.idx} />
           </div>
-          <div className='w-[516px] h-[736px] rounded-2xl flex flex-col' style={{ boxShadow: '2px 2px 20px 0px #2F4B2214' }}>
+          <div className='w-full max-w-[500px] sm:max-w-[600px] lg:w-[516px]! lg:h-[736px] rounded-2xl flex flex-col shrink-0' style={{ boxShadow: '2px 2px 20px 0px #2F4B2214' }}>
             {[0, 1, 2, 3].map((_, index) => (
               <ShadowBox key={index}
                 onMouseEnter={() => setIsHover({idx: index, hover: true})}
                 $active={isHover.idx === index && isHover.hover}
                 className={`${index === 3 ? 'rounded-b-2xl!' : ''}`}
               >
-                <span className={`font-semibold text-[26px] ${isHover.idx === index && isHover.hover ? 'text-white' : 'text-[#B7D98C]'}`}>
+                <span className={`font-semibold text-[22px] sm:text-[26px] ${isHover.idx === index && isHover.hover ? 'text-white' : 'text-[#B7D98C]'}`}>
                   0{index+1}
                 </span>
                 <div className='flex flex-col'>
-                  <span className={`font-semibold text-[34px] ${isHover.idx === index && isHover.hover ? 'text-white' : ''}`}>
+                  <span className={`font-semibold text-[26px] sm:text-[34px] ${isHover.idx === index && isHover.hover ? 'text-white' : ''}`}>
                     {shadowBoxTitles[index]}
                   </span>
-                  <span className={`text-[18px] ${isHover.idx === index && isHover.hover ? 'text-white' : ''}`}>
+                  <span className={`text-[15px] sm:text-[18px] ${isHover.idx === index && isHover.hover ? 'text-white' : ''}`}>
                     {shadowBoxDescriptions[index]}
                   </span>
                 </div>
@@ -91,16 +150,19 @@ const ServicesPage = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col items-center w-full gap-[58px] mt-[312px]'>
-        <div className='flex flex-col items-center gap-1'>
-          <span className='text-[28px]'>표준화된 13종 심리검사</span>
-          <span className='text-[44px] font-semibold text-center'>
+      <div className='flex flex-col items-center w-full gap-10 sm:gap-[58px] mt-20 sm:mt-32 lg:mt-[312px]'>
+        <div className='flex flex-col items-center gap-1 px-4'>
+          <span className='text-[18px] sm:text-[22px] lg:text-[28px]'>표준화된 13종 심리검사</span>
+          <span className='text-[26px] sm:text-[34px] lg:text-[44px] font-semibold text-center'>
             다양한 검사로
             <br />
             나를 더 깊이 이해합니다.
           </span>
+          <span className='text-[13px] sm:text-[14px] text-[#97999B] mt-2 text-center'>
+            검사명을 클릭하면 해당 검사 사이트로 이동합니다.
+          </span>
         </div>
-        <div className='flex w-full h-[324px] gap-8 justify-center'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full max-w-[1300px]'>
           {[0, 1, 2, 3].map((_, index) => (
             <AIBox key={index}>
               <div className='flex flex-col gap-2'>
@@ -113,10 +175,16 @@ const ServicesPage = () => {
                   ))}
                 </span>
               </div>
-              <div className='flex flex-col gap-1 mt-auto'>
-                {[0, 1, 2].map((_, idx) => (
-                  <AIBoxBadge key={idx}>
-                    {AIBoxContents[index as keyof typeof AIBoxContents][idx]}
+              <div className='flex flex-wrap gap-2 mt-8'>
+                {AIBoxContents[index].map((item, idx) => (
+                  <AIBoxBadge
+                    key={idx}
+                    as={item.href ? 'a' : 'div'}
+                    href={item.href}
+                    target={item.href ? '_blank' : undefined}
+                    rel={item.href ? 'noopener noreferrer' : undefined}
+                  >
+                    {item.name}
                   </AIBoxBadge>
                 ))}
               </div>
@@ -130,7 +198,7 @@ const ServicesPage = () => {
 
 const ShadowBox = styled.div<{ $active: boolean }>`
   width: 100%;
-  height: 160px;
+  min-height: 130px;
   border-radius: 16px 16px 0 0;
   display: flex;
   flex-direction: column;
@@ -139,14 +207,19 @@ const ShadowBox = styled.div<{ $active: boolean }>`
   background-color: ${({ $active }) => ($active ? '#2F4B22' : '#FFFFFF')};
   flex-grow: ${({ $active }) => ($active ? 1 : 0)};
   transition: background-color 0.5s, flex-grow 0.5s;
-  padding: 32px 0 0 40px;
+  padding: 24px 16px 0 24px;
+
+  @media (min-width: 1024px) {
+    min-height: 160px;
+    padding: 32px 0 0 40px;
+  }
 `;
 
 const AIBox = styled.div`
-  width: 260px;
-  height: 100%;
+  width: 100%;
+  min-height: 260px;
   border-radius: 16px;
-  padding: 40px 20px 60px 20px;
+  padding: 32px 20px 32px 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -155,16 +228,22 @@ const AIBox = styled.div`
 
 const AIBoxBadge = styled.div`
   width: fit-content;
-  height: 28px;
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 36px;
+  padding: 8px 16px;
   background-color: #8CBE2C;
   border-radius: 24px;
   font-size: 14px;
   font-weight: 600;
   color: white;
+  text-decoration: none;
+
+  &[href]:hover {
+    background-color: #79A625;
+    cursor: pointer;
+  }
 `;
 
 export default ServicesPage;

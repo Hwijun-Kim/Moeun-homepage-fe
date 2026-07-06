@@ -18,7 +18,7 @@ function App() {
   };
 
   return (
-    <div className='w-screen h-screen flex flex-col bg-[#F7F7FB] min-w-[1600px]'>
+    <div className='w-full min-h-screen flex flex-col bg-[#F7F7FB]'>
       <Header
         onAboutClick={() => scrollTo(aboutRef)}
         onTeamClick={() => scrollTo(teamRef)}
