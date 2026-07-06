@@ -45,7 +45,10 @@ const AIBoxContents: { name: string; href?: string }[][] = [
     { name: "STRONG", href: ASSESTA_URL },
     { name: "에니어그램", href: INPSYT_URL },
   ],
-  [{ name: "MLST-2", href: INPSYT_URL }, { name: "MST" }, { name: "학습전략" }],
+  [
+    { name: "MLST-2", href: INPSYT_URL },
+    { name: "MST", href: INPSYT_URL },
+  ],
   [{ name: "SCT", href: INPSYT_URL }, { name: "TAT" }, { name: "HTP" }],
 ];
 

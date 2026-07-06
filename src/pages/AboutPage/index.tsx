@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Fragment} from "react";
 
 const values = [
   '고객 최우선 만족 서비스',
@@ -10,7 +11,7 @@ const values = [
 
 const history = [
   '2019년 상담센터 운영 시작',
-  '아동청소년 심리지원 서비스 바우처',
+  '아동청소년 심리지원\n서비스 바우처',
   '성인 마음건강 서비스 바우처',
   '영암군청 공무원 상담센터 운영',
 ];
@@ -66,7 +67,7 @@ const AboutPage = () => {
           더 성숙하고 건강한 나를 만들어가는 과정을 함께합니다.
         </span>
       </div>
-      <div className='relative z-10 flex flex-col lg:flex-row! gap-12 sm:gap-14 lg:gap-[120px] w-full max-w-[1600px] lg:items-start justify-center sm:items-center'>
+      <div className='relative z-10 flex flex-col lg:flex-row! gap-12 sm:gap-14 lg:gap-[120px] w-full max-w-[1600px] lg:!items-start justify-center items-center'>
         <div className='flex flex-col items-center w-full max-w-[300px] gap-4'>
           <Numbering>1</Numbering>
           <div className='flex flex-col w-full items-center mb-2'>
@@ -87,7 +88,11 @@ const AboutPage = () => {
           </div>
           <div className='flex flex-col gap-1 w-full items-center'>
             {history.map((item, index) => (
-              <TextBox key={index}>{item}</TextBox>
+              <TextBox key={index}>
+                {item.split('\n').map((line, i, arr) => (
+                  <Fragment key={i}>{line}{i < arr.length - 1 && <br />}</Fragment>
+                ))}
+              </TextBox>
             ))}
           </div>
         </div>
